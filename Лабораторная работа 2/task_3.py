@@ -1,8 +1,28 @@
 # TODO  Напишите функцию count_letters
-
+def count_letters(text):
+    # Понижение регистра всех букв
+    lower_text = text.lower()
+    # Инициирование словаря
+    letter_count = {}
+    for char in lower_text:
+        if char.isalpha():
+            # Если буква уже есть в словаре, то значение +1
+            if char in letter_count:
+                letter_count[char] += 1
+            # Если ещё не было в словаре, то добавляется внутрь словаря
+            else:
+                letter_count[char] = 1
+    return letter_count
 
 # TODO Напишите функцию calculate_frequency
-
+def calculate_frequency(letter_count):
+    # Общее количество букв
+    total_letters = sum(letter_count.values())
+    # Инициирование cловаря
+    letter_frequency = {}
+    for current_letter, count in letter_count.items():
+        letter_frequency[current_letter] = count / total_letters
+    return letter_frequency
 
 main_str = """
 У лукоморья дуб зелёный;
@@ -41,16 +61,8 @@ main_str = """
 """
 
 # TODO Распечатайте в столбик букву и её частоту в тексте
-frequencyMap = dict()
-count = 0
-for char in main_str.lower():
-    if char.isalpha():
-        count += 1
-        if char in frequencyMap.keys():
+letters_count = count_letters(main_str)
+frequency_dict = calculate_frequency(letters_count)
 
-            frequencyMap[char] = (frequencyMap[char] + 1)
-        else:
-            frequencyMap[char] = 1
-
-for char, frequency in frequencyMap.items():
-    print(f"{char}:" + " {:.2f}".format(round(frequency / count, 2)))
+for letter, frequency in frequency_dict.items():
+    print(f"{letter}: {frequency:.2f}")
