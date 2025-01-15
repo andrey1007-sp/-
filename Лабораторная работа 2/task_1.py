@@ -1,5 +1,5 @@
 # TODO Напишите функцию для поиска индекса товара
-ef index_search(items_list, find_item):
+def index_search(items_list, find_item):
     for index_item, item in enumerate(items_list):
         if item == find_item:
             return index_item
